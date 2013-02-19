@@ -6,4 +6,5 @@ $database = array(
     "password" => "pass",
     "database" => "new_project");
 
+
 ?>
