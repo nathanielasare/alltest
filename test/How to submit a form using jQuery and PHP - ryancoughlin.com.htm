@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0053)http://www.ryancoughlin.com/demos/ajaxform/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How to submit a form using jQuery and PHP - ryancoughlin.com</title>
+<link rel="stylesheet" href="./How to submit a form using jQuery and PHP - ryancoughlin.com_files/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="./How to submit a form using jQuery and PHP - ryancoughlin.com_files/print.css" type="text/css" media="print">
+<!--[if IE]><link rel="stylesheet" href="../css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<script type="text/javascript" src="./How to submit a form using jQuery and PHP - ryancoughlin.com_files/jquery.js"></script>
+<style type="text/css">
+	#wrap{
+		font-family:"Lucida Grande", Arial;
+		width:800px;
+		margin:100px auto;
+	}
+	a:link,a:visited{
+		color:#202020;
+		text-decoration:none;
+	}
+	a:hover{
+		background-color:#FFF2D5;
+	}
+	h2,h3{margin:2px 0;}
+	#slider{
+		height:300px;
+		margin:50px 0;
+	}
+	#current_value{
+		position:absolute;
+		margin:0 0 0 35px;
+		background-color:#FFF2D5;
+		padding:4px;
+	}
+	#info{
+		margin:10px 0 0 0;
+		display:none;
+		background-color:#FFF9EB;
+		padding:8px;
+	}
+
+</style>
+<script type"text="" javascript"="">
+$(document).ready(function(){
+	$("form#submit").submit(function() {
+	// we want to store the values from the form input box, then send via ajax below
+	var fname     = $('#fname').attr('value');
+	var lname     = $('#lname').attr('value'); 
+		
+		$.ajax({
+			type: "POST",
+			url: "ajax.php",
+			data: "fname="+ fname + "&lname=" + lname,
+			success: function(){
+				$('form#submit').hide();
+				//$('form#submit :input').val("");
+				$('div.success').fadeIn();
+			}
+		});
+	return false;
+	});
+});
+</script>
+<script id="__isTpiViewExists"></script></head>
+<body>
+<div id="wrap">
+	<h2>Fill out the form below, the form will submit via Ajax</h2>
+	<h3>This method can be used on various projects for clients</h3>
+	<br>
+
+		<form id="submit" method="post" name="submit" action="">
+			<fieldset>
+				<legend>Enter Information</legend>
+				<label for="fname">Client First Name:</label>
+				<br>
+				<input type="text" name="fname" id="fname" class="text" size="20">
+				<br>
+				<label for="lname">Client Last Name:</label>
+				<br>
+				<input type="text" name="lname" id="lname" class="text" size="20">
+				<br><br>
+				<button type="submit" class="button positive"> <img src="./How to submit a form using jQuery and PHP - ryancoughlin.com_files/tick.png" alt=""> Add Client </button>
+			</fieldset>
+		</form>
+		<div class="success" style="display:none;">
+			<p>Client has been added.</p>
+		</div>
+		<h4>Go back to <a href="http://www.ryancoughlin.com/">ryancoughlin</a></h4>
+		
+</div>
+
+
+</body></html>
